@@ -1,16 +1,24 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import logo from "./logo.svg";
+import "./App.css";
+import axios from "axios";
 
 class App extends Component {
+  state = { joke: { lead: "", punch: "" } };
+
+  async componentDidMount() {
+    const result = await axios.get("/api/HttpTrigger");
+    const joke = result.data;
+    this.setState({ joke: joke });
+  }
+
   render() {
     return (
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
+          <h1>{this.state.joke.lead}</h1>
+          <p>{this.state.joke.punch}</p>
           <a
             className="App-link"
             href="https://reactjs.org"
