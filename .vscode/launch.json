@@ -1,0 +1,26 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "chrome",
+      "request": "attach",
+      "name": "Attach to Chrome",
+      "webRoot": "${workspaceFolder}",
+      "preLaunchTask": "npm: start",
+      "url": "http://localhost:3000"
+    },
+    {
+      "name": "Attach to Node Functions",
+      "type": "node",
+      "request": "attach",
+      "port": 9229,
+      "preLaunchTask": "func: host start"
+    }
+  ],
+  "compounds": [
+    {
+      "name": "Compound",
+      "configurations": ["Attach to Node Functions", "Attach to Chrome"]
+    }
+  ]
+}
