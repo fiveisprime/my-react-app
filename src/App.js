@@ -4,11 +4,12 @@ import "./App.css";
 import axios from "axios";
 
 class App extends Component {
-  state = { lead: "", punch: "" };
+  state = { joke: { lead: "", punch: "" } };
 
   async componentDidMount() {
     const result = await axios.get("/api/HttpTrigger");
-    this.setState({ lead: result.data.lead, punch: result.data.punch });
+    const joke = result.data;
+    this.setState({ joke: joke });
   }
 
   render() {
@@ -16,8 +17,8 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <h1>{this.state.lead}</h1>
-          <p>{this.state.punch}</p>
+          <h1>{this.state.joke.lead}</h1>
+          <p>{this.state.joke.punch}</p>
           <a
             className="App-link"
             href="https://reactjs.org"
